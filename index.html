@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BGS - Brazil Building System | Seu personal trainer no bolso</title>
+  <meta name="description" content="Treinos completos, planos de dieta e acompanhamento de progresso. Comece grátis, evolua com o Premium." />
+  <link rel="icon" href="/assets/icon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="/index.html">
+        <img src="/assets/icon.svg" alt="" />
+        BGS
+      </a>
+      <nav class="nav-links">
+        <a class="btn btn-ghost btn-sm" href="/login.html">Entrar</a>
+        <a class="btn btn-primary btn-sm" href="/login.html?next=cadastro">Criar conta grátis</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <span class="badge">Novo · Treinos + Dieta + Progresso</span>
+        <h1>Seu personal trainer no bolso</h1>
+        <p class="lead">Treinos prontos, planos de dieta e acompanhamento de evolução. Comece de graça, libere tudo com o Premium por menos que uma mensalidade de academia.</p>
+        <div class="cta-group">
+          <a class="btn btn-primary" href="/login.html?next=cadastro">Começar grátis</a>
+          <a class="btn btn-ghost" href="#precos">Ver planos</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="recursos">
+      <div class="container">
+        <h2>Tudo que você precisa pra treinar</h2>
+        <p class="section-sub">Sem academia cara, sem enrolação.</p>
+        <div class="grid">
+          <div class="card feature-card">
+            <div class="icon">🏋️</div>
+            <h3>Treinos completos</h3>
+            <p>Divisões por grupo muscular, HIIT, mobilidade e muito mais — prontos pra seguir.</p>
+          </div>
+          <div class="card feature-card">
+            <div class="icon">🥗</div>
+            <h3>Planos de dieta</h3>
+            <p>Cardápios para emagrecimento, hipertrofia ou manutenção, direto no app.</p>
+          </div>
+          <div class="card feature-card">
+            <div class="icon">📈</div>
+            <h3>Acompanhamento</h3>
+            <p>Registre os treinos concluídos e acompanhe sua evolução ao longo do tempo.</p>
+          </div>
+          <div class="card feature-card">
+            <div class="icon">📱</div>
+            <h3>No seu ritmo</h3>
+            <p>Treine onde e quando quiser, sem depender de horário de academia.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="precos">
+      <div class="container">
+        <h2>Planos simples e diretos</h2>
+        <p class="section-sub">Cancele quando quiser, sem burocracia.</p>
+        <div class="pricing-grid">
+          <div class="card price-card">
+            <h3>Grátis</h3>
+            <div class="price">R$ 0</div>
+            <ul>
+              <li>2 treinos de amostra</li>
+              <li>Acesso via web</li>
+              <li>Sem plano de dieta</li>
+              <li>Sem histórico de progresso</li>
+            </ul>
+            <a class="btn btn-ghost btn-block" href="/login.html?next=cadastro">Criar conta grátis</a>
+          </div>
+          <div class="card price-card highlight">
+            <span class="tag">Mais popular</span>
+            <h3>Premium</h3>
+            <div class="price">R$ 39<span>/mês</span></div>
+            <ul>
+              <li>Treinos ilimitados</li>
+              <li>Planos de dieta completos</li>
+              <li>Histórico de progresso</li>
+              <li>Novos treinos toda semana</li>
+            </ul>
+            <a class="btn btn-primary btn-block" href="/login.html?next=assinar&amp;plan=monthly">Assinar mensal</a>
+          </div>
+        </div>
+        <p style="text-align:center; margin-top:18px; color:var(--text-dim); font-size:0.9rem;">
+          Prefere pagar uma vez por ano? <a href="/login.html?next=assinar&amp;plan=yearly">Assine o anual por R$ 350</a> e economize.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div>© <span id="year"></span> BGS - Brazil Building System</div>
+      <div>
+        <a href="/termos.html">Termos de uso</a>
+        <a href="/privacidade.html">Privacidade</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

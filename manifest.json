@@ -1,0 +1,12 @@
+{
+  "name": "BGS - Brazil Building System",
+  "short_name": "BGS",
+  "description": "Seu app de treinos com acompanhamento e planos premium.",
+  "start_url": "/app.html",
+  "display": "standalone",
+  "background_color": "#0b0d10",
+  "theme_color": "#0b0d10",
+  "icons": [
+    { "src": "/assets/icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

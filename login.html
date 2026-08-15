@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Entrar | BGS - Brazil Building System</title>
+  <link rel="icon" href="/assets/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="/index.html">
+        <img src="/assets/icon.svg" alt="" />
+        BGS
+      </a>
+      <nav class="nav-links">
+        <a class="btn btn-ghost btn-sm" href="/index.html">Voltar ao site</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="card auth-card">
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="login" type="button">Entrar</button>
+        <button class="tab-btn" data-tab="signup" type="button">Criar conta</button>
+      </div>
+
+      <form id="auth-form">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" required autocomplete="email" />
+
+        <label for="password">Senha</label>
+        <input type="password" id="password" required autocomplete="current-password" minlength="6" />
+
+        <button type="submit" class="btn btn-primary btn-block" style="margin-top:22px;" id="submit-btn">Entrar</button>
+        <p class="form-msg" id="form-msg"></p>
+      </form>
+    </div>
+  </main>
+
+  <script src="/js/config.js"></script>
+  <script type="module">
+    import { signIn, signUp, getSession } from '/js/auth.js';
+
+    const params = new URLSearchParams(window.location.search);
+    const nextParam = params.get('next'); // "assinar" | "cadastro" | null
+    const plan = params.get('plan') || 'monthly';
+
+    const tabs = document.querySelectorAll('.tab-btn');
+    const form = document.getElementById('auth-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const msg = document.getElementById('form-msg');
+    let mode = nextParam === 'cadastro' ? 'signup' : 'login';
+
+    function applyMode() {
+      tabs.forEach((t) => t.classList.toggle('active', t.dataset.tab === mode));
+      submitBtn.textContent = mode === 'signup' ? 'Criar conta' : 'Entrar';
+    }
+    applyMode();
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        mode = tab.dataset.tab;
+        applyMode();
+        msg.textContent = '';
+      });
+    });
+
+    // Se já tem sessão ativa, pula direto pro destino.
+    getSession().then((session) => {
+      if (session) redirectAfterAuth();
+    });
+
+    function redirectAfterAuth() {
+      if (nextParam === 'assinar') {
+        window.location.href = `/app.html?assinar=${encodeURIComponent(plan)}`;
+      } else {
+        window.location.href = '/app.html';
+      }
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      submitBtn.disabled = true;
+      msg.className = 'form-msg';
+      msg.textContent = mode === 'signup' ? 'Criando conta...' : 'Entrando...';
+
+      try {
+        if (mode === 'signup') {
+          const { error } = await signUp(email, password);
+          if (error) throw error;
+          msg.className = 'form-msg success';
+          msg.textContent = 'Conta criada! Verifique seu e-mail se a confirmação estiver ativada, ou faça login.';
+          mode = 'login';
+          applyMode();
+        } else {
+          const { error } = await signIn(email, password);
+          if (error) throw error;
+          redirectAfterAuth();
+        }
+      } catch (err) {
+        msg.className = 'form-msg error';
+        msg.textContent = err.message || 'Não foi possível concluir. Tente novamente.';
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

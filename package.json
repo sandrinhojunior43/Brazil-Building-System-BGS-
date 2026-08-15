@@ -1,0 +1,16 @@
+{
+  "name": "bgs-brazil-building-system",
+  "version": "1.0.0",
+  "description": "BGS - Brazil Building System — app de treinos com assinatura premium (Vercel + Stripe + Supabase)",
+  "private": true,
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0",
+    "stripe": "^16.8.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

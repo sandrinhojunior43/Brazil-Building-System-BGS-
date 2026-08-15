@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Meu treino | BGS - Brazil Building System</title>
+  <link rel="icon" href="/assets/icon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="/app.html">
+        <img src="/assets/icon.svg" alt="" />
+        BGS
+      </a>
+      <nav class="nav-links" id="topbar-actions"></nav>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top:24px;">
+    <div class="app-topbar">
+      <div>
+        <strong>Meu treino</strong>
+        <span id="status-pill" class="pill free" style="margin-left:10px;">…</span>
+      </div>
+    </div>
+
+    <div id="upgrade-banner" class="upgrade-banner"></div>
+
+    <div class="tab-nav" id="tab-nav">
+      <button data-tab="treinos" class="active">Treinos</button>
+      <button data-tab="dieta">Dieta</button>
+      <button data-tab="progresso">Progresso</button>
+      <button data-tab="upgrade">Premium</button>
+    </div>
+
+    <div id="tab-content"></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div>© <span id="year"></span> BGS - Brazil Building System</div>
+      <div>
+        <a href="/termos.html">Termos</a>
+        <a href="/privacidade.html">Privacidade</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/config.js"></script>
+  <script type="module" src="/js/app.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
