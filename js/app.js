@@ -245,11 +245,11 @@ function renderUpgrade() {
       <div class="card price-card">
         <span class="tag">Anual</span>
         <h3>Premium</h3>
-        <div class="price">R$ 350<span>/ano</span></div>
+        <div class="price">R$ 299<span>/ano</span></div>
         <ul>
           <li>Tudo do plano mensal</li>
-          <li>Equivalente a ~R$ 29/mês</li>
-          <li>Pagamento único no ano</li>
+          <li>Equivalente a ~R$ 24,90/mês</li>
+          <li>2 meses grátis em relação ao mensal</li>
         </ul>
         <button class="btn btn-primary btn-block" id="checkout-yearly">Assinar anual</button>
       </div>

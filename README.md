@@ -36,7 +36,7 @@ sql/schema.sql                                                    → schema do 
 1. https://stripe.com → crie a conta (comece no **modo teste**)
 2. **Products → Add Product** → "BGS Premium"
    - Preço mensal recorrente: R$ 29,90 → copie o `price_id`
-   - Preço anual recorrente: R$ 350,00 → copie o `price_id`
+   - Preço anual recorrente: R$ 299,00 → copie o `price_id`
 3. **Developers → API keys** → copie a `Secret key`
 4. Em **Settings → Billing → Customer portal**, ative o portal (necessário para `/api/create-portal-session`)
 5. **Developers → Webhooks → Add endpoint**:
