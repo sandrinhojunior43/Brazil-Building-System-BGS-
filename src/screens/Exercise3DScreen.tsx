@@ -4,6 +4,7 @@ import { Screen } from '../components/Screen';
 import { AppText } from '../components/AppText';
 import { Card } from '../components/Card';
 import { AppButton } from '../components/AppButton';
+import { Viewport3D } from '../components/Viewport3D';
 import { mockRoutines } from '../data/mockRoutines';
 import { colors, radius, spacing } from '../theme';
 import { useResponsive } from '../hooks/useResponsive';
@@ -15,11 +16,9 @@ type Props = NativeStackScreenProps<RoutinesStackParamList, 'Exercise3D'>;
 /**
  * Tela de execução do exercício com demonstração em modelo 3D.
  *
- * O viewport abaixo é um placeholder: a integração real do modelo 3D
- * (ex: via `expo-gl` + `three.js`/`react-three-fiber`, renderizando um
- * asset .glb por exercício a partir de `exercise.model3dId`) entra aqui
- * no lugar do bloco `Viewport3DPlaceholder`, sem alterar o restante do
- * layout responsivo já pronto.
+ * O visualizador (`Viewport3D`) renderiza com expo-gl + three.js. Hoje
+ * mostra uma figura placeholder animada; a troca pelo modelo 3D real por
+ * exercício está documentada em `src/components/Viewport3D.tsx`.
  *
  * Responsividade: em telas largas (tablet/paisagem) o modelo 3D e os
  * controles ficam lado a lado; em celulares em retrato, empilhados.
@@ -54,7 +53,18 @@ export function Exercise3DScreen({ route, navigation }: Props) {
 
       <View style={[styles.layout, sideBySide && styles.layoutRow]}>
         <View style={[styles.viewportWrap, sideBySide && styles.viewportWrapRow]}>
-          <Viewport3DPlaceholder modelId={exercise.model3dId} />
+          <View style={styles.viewport}>
+            {/* key={exercise.id} força recriar o contexto GL ao trocar de exercício */}
+            <Viewport3D key={exercise.id} modelId={exercise.model3dId} />
+          </View>
+          <AppText
+            variant="label"
+            color={colors.textMuted}
+            center
+            style={{ marginTop: spacing.xs }}
+          >
+            Arraste para girar o modelo
+          </AppText>
         </View>
 
         <View style={[styles.infoWrap, sideBySide && styles.infoWrapRow]}>
@@ -100,20 +110,6 @@ function Row({ label, value, last }: { label: string; value: string; last?: bool
   );
 }
 
-function Viewport3DPlaceholder({ modelId }: { modelId: string }) {
-  return (
-    <View style={styles.viewport}>
-      <AppText variant="display">🧍</AppText>
-      <AppText variant="caption" color={colors.textSecondary} style={{ marginTop: spacing.xs }}>
-        Modelo 3D: {modelId}
-      </AppText>
-      <AppText variant="label" color={colors.textMuted} center style={{ marginTop: spacing.xxs, paddingHorizontal: spacing.lg }}>
-        Visualizador 3D interativo será integrado aqui
-      </AppText>
-    </View>
-  );
-}
-
 const styles = StyleSheet.create({
   layout: {
     flex: 1,
@@ -139,8 +135,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surfaceAlt,
     borderWidth: 1,
     borderColor: colors.border,
-    alignItems: 'center',
-    justifyContent: 'center',
+    overflow: 'hidden',
   },
   row: {
     flexDirection: 'row',
